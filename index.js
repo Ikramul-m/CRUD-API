@@ -1,4 +1,6 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
 const app = express();
 
 const PORT = 3000;
@@ -9,6 +11,5 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello from API Server");
+  res.send("Hello from API Server...");
 });
-
