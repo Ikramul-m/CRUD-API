@@ -1,4 +1,9 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 
-console.log("hello there")
+const PORT = 3000;
+const hostName = "localhost";
+
+app.listen(PORT, () => {
+  console.log(`Server listening on http://${hostName}:${PORT}`);
+});
