@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
   res.send("Hello from API Server...");
 });
 
+
+
+
+
 // POST API starts
 app.post("/api/products", async (req, res) => {
   try {
@@ -23,8 +27,11 @@ app.post("/api/products", async (req, res) => {
 });
 // POST API ends
 
+
+
+
 mongoose
-  .connect("mongodb://localhost:27017/Allproducts")
+  .connect("mongodb://localhost:27017/Myproducts")
   .then(() => {
     console.log("Connected to database!");
     app.listen(PORT, () => {
