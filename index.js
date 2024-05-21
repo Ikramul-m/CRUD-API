@@ -30,6 +30,8 @@ app.post("/api/products", async (req, res) => {
 
 
 
+
+// Database connection
 mongoose
   .connect("mongodb://localhost:27017/Myproducts")
   .then(() => {
