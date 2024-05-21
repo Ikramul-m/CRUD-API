@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const Product = require('./Models/Product.model.js')
+
 
 const app = express();
 app.use(express.json());
@@ -13,12 +15,22 @@ app.get("/", (req, res) => {
 
 
 
+
+
+
 // POST API starts
 app.post("/api/products", (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
+  try {
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 // POST API ends
+
+
+
+
 
 
 
