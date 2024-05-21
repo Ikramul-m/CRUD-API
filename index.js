@@ -14,6 +14,17 @@ app.get("/", (req, res) => {
 
 
 
+// GET API
+app.get("/api/products", async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
 
 
 // POST API starts
@@ -26,10 +37,6 @@ app.post("/api/products", async (req, res) => {
   }
 });
 // POST API ends
-
-
-
-
 
 // Database connection
 mongoose
