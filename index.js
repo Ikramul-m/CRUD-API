@@ -2,36 +2,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Product = require("./Models/Product.model.js");
 
-
-
-
-
-
-
-
-
 const app = express();
 app.use(express.json());
 
 const PORT = 3000;
 const hostName = "localhost";
 
-
-
-
-
-
-
-
 app.get("/", (req, res) => {
   res.send("Hello from API Server...");
 });
-
-
-
-
-
-
 
 // GET API
 app.get("/api/products", async (req, res) => {
@@ -42,12 +21,6 @@ app.get("/api/products", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
-
-
-
-
-
 
 // GET Product API by Id
 app.get("/api/products/:id", async (req, res) => {
@@ -60,13 +33,7 @@ app.get("/api/products/:id", async (req, res) => {
   }
 });
 
-
-
-
-
-
-
-// POST API 
+// POST API
 app.post("/api/products", async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -75,6 +42,66 @@ app.post("/api/products", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+//Update Product (PUT Method)
+
+app.put("/api/products/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByIdAndUpdate(id, req.body);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    const updatedProduct = await Product.findById(id);
+
+    res.status(200).json(updatedProduct);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
+
+// Delete a product 
+
+app.delete('/api/products/:id', async (req, res) => {
+
+  try
+  {
+    const { id } = req.params
+    const product = await Product.findByIdAndDelete(id)
+
+    if(!product)
+      {
+        return res.status(404).json({ message: "Product not found"})
+      }
+
+      res.status(200).json({ message: "Product deleted successfully"})
+
+  }
+  catch(err)
+  {
+    res.status(500).json({message: err.message})
+  }
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
