@@ -2,15 +2,36 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Product = require("./Models/Product.model.js");
 
+
+
+
+
+
+
+
+
 const app = express();
 app.use(express.json());
 
 const PORT = 3000;
 const hostName = "localhost";
 
+
+
+
+
+
+
+
 app.get("/", (req, res) => {
   res.send("Hello from API Server...");
 });
+
+
+
+
+
+
 
 // GET API
 app.get("/api/products", async (req, res) => {
@@ -21,6 +42,12 @@ app.get("/api/products", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+
+
+
+
+
 
 // GET Product API by Id
 app.get("/api/products/:id", async (req, res) => {
@@ -33,7 +60,13 @@ app.get("/api/products/:id", async (req, res) => {
   }
 });
 
-// POST API starts
+
+
+
+
+
+
+// POST API 
 app.post("/api/products", async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -42,7 +75,10 @@ app.post("/api/products", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-// POST API ends
+
+
+
+
 
 // Database connection
 mongoose
