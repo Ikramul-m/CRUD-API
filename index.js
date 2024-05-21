@@ -12,8 +12,6 @@ app.get("/", (req, res) => {
   res.send("Hello from API Server...");
 });
 
-
-
 // GET API
 app.get("/api/products", async (req, res) => {
   try {
@@ -24,8 +22,16 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
-
-
+// GET Product API by Id
+app.get("/api/products/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 // POST API starts
 app.post("/api/products", async (req, res) => {
