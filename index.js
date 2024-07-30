@@ -62,50 +62,22 @@ app.put("/api/products/:id", async (req, res) => {
   }
 });
 
+// Delete a product
 
+app.delete("/api/products/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByIdAndDelete(id);
 
-// Delete a product 
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
 
-app.delete('/api/products/:id', async (req, res) => {
-
-  try
-  {
-    const { id } = req.params
-    const product = await Product.findByIdAndDelete(id)
-
-    if(!product)
-      {
-        return res.status(404).json({ message: "Product not found"})
-      }
-
-      res.status(200).json({ message: "Product deleted successfully"})
-
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
-  catch(err)
-  {
-    res.status(500).json({message: err.message})
-  }
-
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 // Database connection
 mongoose
