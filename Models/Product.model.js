@@ -16,7 +16,7 @@ const ProductSchema = mongoose.Schema(
     quantity: {
       type: Roman,
       required: [true, "Please enter quantity"],
-      default: 0,
+      default: I,
     },
   },
   {
